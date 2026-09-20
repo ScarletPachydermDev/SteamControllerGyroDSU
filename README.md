@@ -13,6 +13,23 @@ It is the Steam Machine's counterpart to
 the same job for the Steam Deck's built-in IMU and does not know about this
 controller.
 
+## Status
+
+The server works: it reads the controller, speaks DSU correctly, and
+emulators connect to it and receive motion. Getting a game to feel right is
+not finished.
+
+Two known problems:
+
+* **The controller only reports motion while Steam has gyro enabled for the
+  running app.** Idle, or with gyro off in a game's Steam Input config, it
+  repeats one frozen sample, which games read as a stick held over. Setting
+  gyro to act as a mouse for that game keeps the sensor awake without Steam
+  taking the input a joystick binding would.
+* **Aim drifts in games.** Resting bias is measured and removed, and the
+  axes were established by measurement, but Breath of the Wild in Ryujinx
+  still drifts. Unfinished, not solved.
+
 ## Requirements
 
 Python 3, and a 2026 Steam Controller (USB `28de:1305`). No root: SteamOS
