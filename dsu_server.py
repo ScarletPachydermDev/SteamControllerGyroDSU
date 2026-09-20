@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """A DSU (CemuHook motion protocol) server for the 2026 Steam Controller,
 so emulators can use its real gyroscope instead of Steam Input's emulated
 one.

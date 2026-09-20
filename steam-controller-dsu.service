@@ -2,7 +2,7 @@
 Description=Steam Controller Gyro DSU Server
 
 [Service]
-ExecStart=%h/.local/bin/steam-controller-dsu
+ExecStart=/usr/bin/env python3 %h/.local/bin/steam-controller-dsu
 Restart=always
 RestartSec=2
 

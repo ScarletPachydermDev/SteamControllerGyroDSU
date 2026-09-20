@@ -19,14 +19,33 @@ Python 3, and a 2026 Steam Controller (USB `28de:1305`). No root: SteamOS
 already grants your user access to the controller's HID device. It works
 while Steam is running and holding the controller.
 
-## Use
+## Install
+
+On the machine itself, in Desktop mode, download
+[Install or Update GyroDSU](https://raw.githubusercontent.com/ScarletPachydermDev/SteamControllerGyroDSU/master/install-gyrodsu.desktop)
+to the Desktop and double-click it. It installs the server, enables it as a
+user service, and starts it. No root, no build step.
+
+Run the same shortcut again to update. The server is small and its only
+moving part is the controller's report format, so updates should be rare.
+[Uninstall GyroDSU](https://raw.githubusercontent.com/ScarletPachydermDev/SteamControllerGyroDSU/master/uninstall-gyrodsu.desktop)
+removes it.
+
+From a terminal or a clone, the same thing:
 
 ```sh
-python3 dsu_server.py
+./install.sh      # or: curl -fsSL .../install.sh | bash
+./uninstall.sh
 ```
 
-It serves on `127.0.0.1:26760`, the port emulators expect. Then point your
-emulator's motion source at that address:
+If the Steam Deck's own `sdgyrodsu` is installed, the installer disables it:
+it holds the same UDP port without being able to read this controller.
+
+## Use
+
+Once installed it serves on `127.0.0.1:26760`, the port emulators expect,
+and starts with your session. Point your emulator's motion source at that
+address:
 
 | Emulator | Setting |
 | --- | --- |
@@ -34,12 +53,10 @@ emulator's motion source at that address:
 | Cemu | motion source `DSU` |
 | Dolphin, Eden | their own DSU / CemuHook motion option |
 
-To keep it running, install it as a user service:
+To run it by hand instead, without installing:
 
 ```sh
-install -Dm755 dsu_server.py ~/.local/bin/steam-controller-dsu
-install -Dm644 steam-controller-dsu.service ~/.config/systemd/user/
-systemctl --user enable --now steam-controller-dsu
+python3 dsu_server.py
 ```
 
 ## The controller's report format

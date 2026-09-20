@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Install or Update Steam Controller GyroDSU
+Comment=Install or update the gyro DSU server for the 2026 Steam Controller
+Icon=input-gaming
+Terminal=true
+Exec=bash -c "curl -fsSL https://raw.githubusercontent.com/ScarletPachydermDev/SteamControllerGyroDSU/master/install.sh | bash; echo; read -n 1 -s -r -p 'Press any key to close.'"
+Categories=Game;
